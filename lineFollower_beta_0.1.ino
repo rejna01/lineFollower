@@ -11,10 +11,10 @@ double setPoint = 0;
 
 AutoPID pidko(&difference, &setPoint, &outputVal, OUTPUT_MIN, OUTPUT_MAX, KP, KI, KD);
 
-const int left_motor_forward = 8;
-const int left_motor_backward = 7;
-const int right_motor_forward = 9;
-const int right_motor_backward = 10;
+const int left_motor_forward = 7;
+const int left_motor_backward = 8;
+const int right_motor_forward = 10;
+const int right_motor_backward = 9;
 
 const int left_pwm_pin = 5;
 const int right_pwm_pin = 6;
@@ -24,7 +24,7 @@ const int right_ir_receiver_enable = A1;
 
 const int ir_receiver = A0;
 
-const int max_speed = 64;
+const int max_speed = 81;
 
 
 
@@ -48,15 +48,25 @@ void setup() {
   digitalWrite(right_motor_backward, LOW);
 
   digitalWrite(left_ir_receiver_enable, LOW);
-  digitalWrite(right_ir_receiver_enable, LOW);
+  digitalWrite(right_ir_receiver_enable, HIGH);
 }
 
 void loop() {
-  updateDifference();
-  pidko.run();
+  //updateDifference();
+  //pidko.run();
   //motorVeerControl(outputVal);
   //motorVeerControl(0);
-  delay(500);
+  //delay(500);
+
+  //980/240
+
+  if(analogRead(A0) > 600){
+    motorVeerControl(-80);
+  } else if(analogRead(A0) < 600){
+    motorVeerControl(90);
+  } else{
+    motorVeerControl(0);
+  }
 }
 
 /****************************************************************/
