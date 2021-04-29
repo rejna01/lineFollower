@@ -1,2 +1,3 @@
 # lineFollower
-Prdel Zkouska
+
+První nástřel našeho programu
