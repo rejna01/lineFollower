@@ -1,2 +1,2 @@
 # lineFollower #3
-Prdel
+Zkrášlení testovacího programu
